@@ -1,10 +1,14 @@
 package com.levi.enterprises.spring.springProject.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -19,6 +23,9 @@ public class User implements Serializable{
     private String phone;
     private String password;
 
+    @OneToMany(mappedBy = "client")
+    private List<Order> orders = new ArrayList<>();
+
     public User() {
     }
 
@@ -29,6 +36,7 @@ public class User implements Serializable{
         this.phone = phone;
         this.password = password;
     }
+    
 
     public Long getId() {
         return id;
@@ -48,6 +56,10 @@ public class User implements Serializable{
 
     public String getPassword() {
         return password;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
     }
 
     @Override
@@ -74,5 +86,27 @@ public class User implements Serializable{
             return false;
         return true;
     }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    
 
 }
