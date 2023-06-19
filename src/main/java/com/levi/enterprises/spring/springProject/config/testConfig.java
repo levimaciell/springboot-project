@@ -10,10 +10,12 @@ import org.springframework.context.annotation.Profile;
 
 import com.levi.enterprises.spring.springProject.entities.Category;
 import com.levi.enterprises.spring.springProject.entities.Order;
+import com.levi.enterprises.spring.springProject.entities.Product;
 import com.levi.enterprises.spring.springProject.entities.User;
 import com.levi.enterprises.spring.springProject.entities.enums.OrderStatus;
 import com.levi.enterprises.spring.springProject.repositories.CategoryRepository;
 import com.levi.enterprises.spring.springProject.repositories.OrderRepository;
+import com.levi.enterprises.spring.springProject.repositories.ProductRepository;
 import com.levi.enterprises.spring.springProject.repositories.UserRepository;
 
 @Configuration
@@ -27,6 +29,8 @@ public class testConfig implements CommandLineRunner {
     private OrderRepository oRep;
     @Autowired
     private CategoryRepository catRep;
+    @Autowired
+    private ProductRepository prodRep;
 
 
 
@@ -44,9 +48,16 @@ public class testConfig implements CommandLineRunner {
         Category cat2 = new Category(null, "Books");
         Category cat3 = new Category(null, "Computers");
 
+        Product p1 = new Product(null, "The Lord of the Rings", "Lorem ipsum dolor sit amet, consectetur.", 90.5, "");
+        Product p2 = new Product(null, "Smart TV", "Nulla eu imperdiet purus. Maecenas ante.", 2190.0, "");
+        Product p3 = new Product(null, "Macbook Pro", "Nam eleifend maximus tortor, at mollis.", 1250.0, "");
+        Product p4 = new Product(null, "PC Gamer", "Donec aliquet odio ac rhoncus cursus.", 1200.0, "");
+        Product p5 = new Product(null, "Rails for Dummies", "Cras fringilla convallis sem vel faucibus.", 100.99, "");
+
         uRep.saveAll(Arrays.asList(u1,u2));
         oRep.saveAll(Arrays.asList(o1,o2,o3));
         catRep.saveAll(Arrays.asList(cat1, cat2, cat3));
+        prodRep.saveAll(Arrays.asList(p1,p2,p3,p4,p5));
     }
 
 }
