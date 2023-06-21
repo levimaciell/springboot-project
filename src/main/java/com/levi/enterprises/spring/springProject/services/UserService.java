@@ -24,4 +24,8 @@ public class UserService {
         return Optional.get();
     }
 
+    public User insert(User obj){
+        return uRep.save(obj);
+    }
+
 }
