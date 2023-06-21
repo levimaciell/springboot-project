@@ -28,4 +28,8 @@ public class UserService {
         return uRep.save(obj);
     }
 
+    public void delete(Long id){
+        uRep.deleteById(id);
+    }
+
 }
