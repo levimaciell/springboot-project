@@ -12,6 +12,8 @@ import com.levi.enterprises.spring.springProject.repositories.UserRepository;
 import com.levi.enterprises.spring.springProject.services.exceptions.DatabaseException;
 import com.levi.enterprises.spring.springProject.services.exceptions.ResourceNotFoundException;
 
+import jakarta.persistence.EntityNotFoundException;
+
 @Service
 public class UserService {
     
@@ -49,9 +51,15 @@ public class UserService {
 
     public User update(Long id, User obj){
 
-        User entity = uRep.getReferenceById(id);
-        updateData(entity, obj);
-        return uRep.save(entity);
+        try{
+            User entity = uRep.getReferenceById(id);
+            updateData(entity, obj);
+            return uRep.save(entity);
+        }
+        catch(EntityNotFoundException e){
+            throw new ResourceNotFoundException(id);
+        }
+        
     }
 
     private void updateData(User entity, User obj){
